@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- while this is setting the thymeleaf namespace with th to use th:, 
+COULD use data-th instead and not need the namespace
+entry and would be valid HTML5 document
+ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Authors List</title>
+</head>
+<body>
+<h1>Author List</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Books</th>
+  </tr>
+  <!-- th: = thymeleaf; books from the model, which is an iterable -->
+  <tr th:each="author : ${authors}">
+    <td th:text="${author.id}">123</td>
+    <td th:text="${author.firstName}">Craig</td>
+    <td th:text="${author.lastName}">Walls</td>
+    <!-- not sure this would really work if there were multiple books, but would like to be able to show all the books for the author -->
+    <td th:each="book : ${author.books}" th:text="${book.title}">Spring in Action, SpringBoot in Action</td> 
+  </tr>  
+</table>
+
+</body>
+</html>
