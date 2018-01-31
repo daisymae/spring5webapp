@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /** start with POJO **/
 /** Add @Entity annotation **/
@@ -21,8 +22,10 @@ public class Book {
 	private Long id;
 	private String title;
 	private String isbn;
-	private String publisher;
-	
+
+	@OneToOne
+	private Publisher publisher;
+
 	/* add JoinTable so only have one join table, not two
 	 * and tell it the column name to use. by default generated a books_id
 	 * in AUTHOR_BOOKS and a authors_id in BOOK_AUTHORS
@@ -35,16 +38,14 @@ public class Book {
 	
 	public Book() {}
 	
-	public Book( String title, String isbn, String publisher) {
+	public Book( String title, String isbn) {
 		this.setTitle(title);
 		this.setIsbn(isbn);
-		this.setPublisher(publisher);
 	}
 	
-	public Book( String title, String isbn, String publisher, Set<Author> authors) {
+	public Book( String title, String isbn, Set<Author> authors) {
 		this.setTitle(title);
 		this.setIsbn(isbn);
-		this.setPublisher(publisher);
 		this.setAuthors(authors);
 	}
 
@@ -72,20 +73,20 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
 	public Set<Author> getAuthors() {
 		return authors;
 	}
 
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 	
 	@Override
@@ -115,7 +116,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", publisher=" + publisher + ", authors="
+		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", authors="
 				+ authors + "]";
 	}
 	
