@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /** start with POJO **/
@@ -21,7 +23,14 @@ public class Book {
 	private String isbn;
 	private String publisher;
 	
+	/* add JoinTable so only have one join table, not two
+	 * and tell it the column name to use. by default generated a books_id
+	 * in AUTHOR_BOOKS and a authors_id in BOOK_AUTHORS
+	 *  
+	 */
 	@ManyToMany
+	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+	inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors = new HashSet<Author>();
 	
 	public Book() {}

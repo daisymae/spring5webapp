@@ -18,7 +18,8 @@ public class Author {
 	private String firstName;
 	private String lastName;
 	
-	@ManyToMany
+	/* change this so don't get the default generated tables, but something more suitable */
+	@ManyToMany(mappedBy = "authors")
 	private Set<Book> books = new HashSet<Book>();
 	
 	public Author() {}
