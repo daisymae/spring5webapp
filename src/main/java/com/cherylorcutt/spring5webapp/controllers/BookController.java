@@ -1,10 +1,10 @@
-package guru.springframework.spring5webapp.controllers;
+package com.cherylorcutt.spring5webapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import guru.springframework.spring5webapp.repositories.BookRepository;
+import com.cherylorcutt.spring5webapp.repositories.BookRepository;
 
 /**
  * Create a BookController
