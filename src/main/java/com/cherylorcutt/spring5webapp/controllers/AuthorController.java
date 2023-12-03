@@ -9,17 +9,16 @@ import com.cherylorcutt.spring5webapp.repositories.AuthorRepository;
 @Controller
 public class AuthorController {
 
-  private AuthorRepository authorRepository;
+  private final AuthorRepository authorRepository;
 
   public AuthorController(AuthorRepository authorRepository) {
-    super();
     this.authorRepository = authorRepository;
   }
   
   @RequestMapping("/authors")
   public String getAuthors(Model model) {
     model.addAttribute("authors", authorRepository.findAll());
-    return "authors";
+    return "authors/list";
   }
   
 }

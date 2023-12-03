@@ -18,11 +18,10 @@ import com.cherylorcutt.spring5webapp.repositories.BookRepository;
 @Controller
 public class BookController {
 	
-	private BookRepository bookRepository;
+	private final BookRepository bookRepository;
 	
 	/* Spring will autowire bookRepository here */
 	public BookController(BookRepository bookRepository) {
-		super();
 		this.bookRepository = bookRepository;
 	}
 
